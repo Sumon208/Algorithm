@@ -1,0 +1,32 @@
+vector<int> Counting_Sort(vector<int>& aa)
+{
+
+    int n = aa.size();
+
+    int mx = 0;
+
+    for (int i = 0; i < n; i++)
+        mx = max(mx, aa[i]);
+
+    vector<int> Count(mx+ 1, 0);
+
+
+    for (int i = 0; i < n; i++)
+        Count[aa[i]]++;
+
+    for (int i = 1; i <= mx; i++)
+        Count[i] += Count[i - 1];
+
+    vector<int> output(n);
+
+    for (int i = n - 1; i >= 0; i--)
+
+    {
+        output[Count[aa[i]] - 1]
+            = aa[i];
+
+        Count[aa[i]]--;
+    }
+
+    return output;
+}
